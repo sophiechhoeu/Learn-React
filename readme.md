@@ -146,7 +146,7 @@ document.getElementById('react-container'))
 
 ### Create class component
 
-```sh
+```Javascript
 <div id='react-container'></div>
 <script type="text/babel">
   var MyComponent = React.createClass({
@@ -166,7 +166,7 @@ document.getElementById('react-container'))
 
 ### Es6 class syntax
 
-```sh
+```Javascript
 <div id='react-container'></div>
 <script type="text/babel">
 
@@ -199,7 +199,7 @@ const MyComponent = () => {
 
 Most common in react documentation
 
-```sh
+```Javascript
 const MyComponent = () => {
     return <div>
             <h1>Hello World</h1>
@@ -209,4 +209,68 @@ const MyComponent = () => {
 
 ReactDOM.render(<MyComponent />,
     document.getElementById('react-container'))
+```
+
+## Properties
+
+- this.props.text - JSX syntax wrapped in curly braces
+- React wants to render only  one element so wrap multiple components in one div.
+- display dynamic properties and reuse components
+
+```Javascript
+<div id='react-container'></div>
+<script type="text/babel">
+    var MyComponent = React.createClass({
+      render() {
+        return <div>
+                <h1>{this.props.text}</h1>
+                <p>This is my first React component!</p>
+            </div>
+      }
+
+    })
+
+    ReactDOM.render(
+      <div>
+      <MyComponent text="Hello World" />
+      <MyComponent text="I am a component" />
+      <MyComponent text="I have been reused" />
+      </div>,
+        document.getElementById('react-container'))
+
+</script>
+
+```
+
+### props.children
+
+- help display some dynamic content
+- added closing my component tag </MyComponent>
+- by doing so, you can add tags or text inside of these components creating components that are wrapped around child text.
+- to display children replace the static content with another JSX expression {this.props.children}
+- {this.props.children} : looking for the child of this particular element and display that inside the paragraph
+
+
+```Javascript
+<div id='react-container'></div>
+<script type="text/babel">
+    var MyComponent = React.createClass({
+      render() {
+        return <div>
+                <h1>{this.props.text}</h1>
+                <p>{this.props.children}</p>
+            </div>
+      }
+
+    })
+
+    ReactDOM.render(
+      <div>
+      <MyComponent text="Hello World" >This is message 1</MyComponent>
+      <MyComponent text="I am a component" >This is message 2</MyComponent>
+      <MyComponent text="I have been reused">This is message 3</MyComponent>
+      </div>,
+        document.getElementById('react-container'))
+
+</script>
 ```
