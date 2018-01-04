@@ -34,12 +34,12 @@ with React
 
 - Javascript Logic
 
-### Create React App
+## Create React App
 *post it message react application*
 
 - create index.html
 
-## index.html
+### index.html
 
 *in-browser transpiling*
 In the head add react script developer tags for react and react DOM.
@@ -118,5 +118,69 @@ then add type="text/babel" so it knows to transpile this code
     <li>item 2</li>
     </ul>,
     document.getElementById('react-container'))
+</script>
+```
+
+
+## Components
+
+React applications = collection of Components
+Components are small user interface elements that display data as it changes over time.
+
+- Step 1: set the variable for the component (var = MyComponent)
+- Step 2: React.createClass will take in a function with an object ({})
+- Step 3: first method will be render (always required when we create a component because it tells react what we want to render to the DOM)
+  ````
+  render() {
+
+  }
+  ````
+
+- step 4: ReactDOM.render - taking two arguments (MyComponent - so what we want to render) then where we want to render it (document.getElementById the react container)
+
+````
+ReactDOM.render(<MyComponent />,
+document.getElementById('react-container'))
+
+````
+
+### Create class component
+
+```sh
+<div id='react-container'></div>
+<script type="text/babel">
+  var MyComponent = React.createClass({
+    render() {
+      return <div>
+      <h1> Hello World</h1>
+      <p>This is my first react component</p>
+
+      </div>
+    }
+  })
+
+  ReactDOM.render(<MyComponent />,
+  document.getElementById('react-container'))
+</script>
+```
+
+### Es6 class syntax
+
+```sh
+<div id='react-container'></div>
+<script type="text/babel">
+
+  class MyComponent extends React.Component {
+    render() {
+      return <div>
+      <h1> Hello World</h1>
+      <p>This is my first react component</p>
+
+      </div>
+    }
+  }
+
+  ReactDOM.render(<MyComponent />,
+  document.getElementById('react-container'))
 </script>
 ```
