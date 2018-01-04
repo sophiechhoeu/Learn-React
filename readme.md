@@ -35,7 +35,7 @@ with React
 - Javascript Logic
 
 ## Create React App
-*post it message react application*
+*message board react application*
 
 - create index.html
 
@@ -183,4 +183,30 @@ document.getElementById('react-container'))
   ReactDOM.render(<MyComponent />,
   document.getElementById('react-container'))
 </script>
+```
+
+
+### Stateless functional component
+
+ie a simple function that returns react elements
+uses es6 arrow syntax ie
+
+````
+const MyComponent = () => {
+
+}
+````
+
+Most common in react documentation
+
+```sh
+const MyComponent = () => {
+    return <div>
+            <h1>Hello World</h1>
+            <p>This is my first React component!</p>
+        </div>
+}
+
+ReactDOM.render(<MyComponent />,
+    document.getElementById('react-container'))
 ```
