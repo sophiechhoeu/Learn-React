@@ -339,6 +339,7 @@ render () {
 
 
 ## React State
+[Checkbox](/checkbox/index.html)
 
 - When a component's state data changes, the render function will be changed again to re-render the change in state
 
@@ -448,4 +449,80 @@ return (
   ReactDOM.render(<Checkbox/>,
     document.getElementById('react-container'))
 </script>
+```
+
+## Adding state
+[note](/bulletinBoard/index.html)
+
+- initial state to false
+- edit function state is true meaning every time this edit method is called we set the state to true.
+```
+getInitialState() {
+  return{editing:false}
+},
+edit(){
+   this.setState({editing:true})
+},
+```
+
+- create method for save.
+- save will be a button on the form that changes the editing state back to false and displays the note.
+```
+save() {
+  this.setState({editing:false})
+},
+
+```
+
+- create two methods one: render the form two: render display the note. Render method determines which will be displayed
+
+- So if editing is true (this.state.editing) ?
+if true we're going to render the form :
+if false  render the display.
+
+
+
+```
+renderForm() {
+  return (
+    <div className="note">
+    <textarea ref="newText"></textarea>
+    <button onClick={this.save}>SAVE</button>
+    </div>
+  )
+},
+
+renderDisplay() {
+  return (
+    <div className="note">
+    <p>{this.props.children}</p>
+    <span>
+      <button onClick={this.edit}>EDIT</button>
+      <button onClick={this.remove}>X</button>
+    </span>
+    </div>
+  )
+},
+render () {
+
+  return (this.state.editing) ? this.renderForm() : this.renderDisplay()
+  }
+})
+
+```
+
+## Using refs
+grabbing the value of elements through refs
+
+to grab the value of the text inorder to save:
+add ref="newText"
+```
+<textarea ref="newText"></textarea>
+```
+
+- update save method
+create variable called val
+```
+var val = this.refs.newText.value
+
 ```
