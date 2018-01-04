@@ -41,6 +41,7 @@ with React
 
 ## index.html
 
+*in-browser transpiling*
 In the head add react script developer tags for react and react DOM.
 
 ```sh
@@ -67,4 +68,55 @@ which will take two arguments:
       document.getElementById('react-container'))
   </script>
 
+```
+
+Using JSX but errors - what we need Babel for this to run
+
+```sh
+
+<div id='react-container'></div>
+<script>
+  ReactDOM.render(
+    <ul>
+    <li>item 1</li>
+    <li>item 2</li>
+    <li>item 2</li>
+    </ul>,
+    document.getElementById('react-container'))
+</script>
+
+```
+
+## Babel
+
+Transpiler that will transpile Javascript Code.
+It works for JSX and also works for es6 and beyond
+
+Babel transpiles it into something that the browser can use straight away.
+JSX to a createElement Function call.
+
+Below is in-browser transpiling - best practice is to use webpack to include Babel as a module.
+
+```sh
+<head>
+  <script src="https://fb.me/react-15.2.1.js"></script>
+  <script src="https://fb.me/react-dom-15.2.1.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.js"></script>
+  <title>My First React File</title>
+</head>
+
+```
+
+then add type="text/babel" so it knows to transpile this code
+
+```sh
+<script type="text/babel">
+  ReactDOM.render(
+    <ul>
+    <li>item 1</li>
+    <li>item 2</li>
+    <li>item 2</li>
+    </ul>,
+    document.getElementById('react-container'))
+</script>
 ```
