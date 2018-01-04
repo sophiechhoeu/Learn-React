@@ -130,23 +130,23 @@ Components are small user interface elements that display data as it changes ove
 - Step 1: set the variable for the component (var = MyComponent)
 - Step 2: React.createClass will take in a function with an object ({})
 - Step 3: first method will be render (always required when we create a component because it tells react what we want to render to the DOM)
-  ````
+  ```
   render() {
 
   }
-  ````
+  ```
 
 - step 4: ReactDOM.render - taking two arguments (MyComponent - so what we want to render) then where we want to render it (document.getElementById the react container)
 
-````
+```
 ReactDOM.render(<MyComponent />,
 document.getElementById('react-container'))
 
-````
+```
 
 ### Create class component
 
-```Javascript
+```javascript
 <div id='react-container'></div>
 <script type="text/babel">
   var MyComponent = React.createClass({
@@ -166,7 +166,7 @@ document.getElementById('react-container'))
 
 ### Es6 class syntax
 
-```Javascript
+```javascript
 <div id='react-container'></div>
 <script type="text/babel">
 
@@ -217,7 +217,7 @@ ReactDOM.render(<MyComponent />,
 - React wants to render only  one element so wrap multiple components in one div.
 - display dynamic properties and reuse components
 
-```Javascript
+```javascript
 <div id='react-container'></div>
 <script type="text/babel">
     var MyComponent = React.createClass({
@@ -251,7 +251,7 @@ ReactDOM.render(<MyComponent />,
 - {this.props.children} : looking for the child of this particular element and display that inside the paragraph
 
 
-```Javascript
+```javascript
 <div id='react-container'></div>
 <script type="text/babel">
     var MyComponent = React.createClass({
@@ -279,57 +279,173 @@ ReactDOM.render(<MyComponent />,
 - create variable called Note
 - use
 
-  ````Javascript
+  ```javascript
   React.createClass({
 
   })
-  ````
+  ```
 - each components needs a render function that says what we want to return
 
-  ````Javascript
+  ```javascript
   render() {
     return (
 
       )
   }
-  ````
+  ```
 - best practice for render method is to wrap all of the DOM elements that we want to create in parentheses () otherwise it will error
 
 - JSX classes are <div **className**="">
 
 - then ReactDOM.render function takes in two components what we want to render(<Note></Note) and where document.getElementById('react-container')
 
-````Javascript
+```javascript
   ReactDOM.render(<Note></Note>,
   document.getElementById('react-container'))
-````
+```
 
 - create edit and remove functions
 
-````Javascript
+```javascript
 edit() {
    alert("edit note")
 },
-````
+```
 ***same for remove***
 
 - adding event by: onClick={} to each button
     ***{} for JSX expression***
-    ````Javascript
+    ```javascript
     onClick={this.edit}
     onClick={this.remove}
-    ````
+    ```
 - displaying note content: add text inside the render component
-- in the render inside the return and the div:
- ````Javascript
- render () {
-   return (
-     <div className="note">
-     <p>{this.props.children}</p>
-     <span>
-       <button onClick={this.edit}>EDIT</button>
-       <button onClick={this.remove}>X</button>
-     </span>
-     </div>
-   )
- ````
+- in the render inside the return and the div
+```
+render () {
+  return (
+    <div className="note">
+    <p>{this.props.children}</p>
+    <span>
+      <button onClick={this.edit}>EDIT</button>
+      <button onClick={this.remove}>X</button>
+    </span>
+    </div>
+  )
+```
+
+
+
+
+
+## React State
+
+- When a component's state data changes, the render function will be changed again to re-render the change in state
+
+- create Checkbox variable with ***React.createClass({
+})*** this will simply introduce state
+
+- then
+```
+ render(){
+
+  }
+```
+- then
+```
+return (
+    <div>
+    </div>
+  )
+```
+
+- inside the div create an input type
+
+```
+<input type="checkbox"/>
+```
+
+- add react state: getInitialState ie when the component renders this will be the initial state(unchecked) where {checked:false}
+```
+getInitialState() {
+  return {checked: false}
+}
+```
+
+- custom method handleCheck (or whatever you want to name it) here we use this.setState. So whenever handleCheck is called it's going to set the state to something different
+
+
+- setState takes an object then references our state variable ie checked(from initial state) then check its not this.state checked allowing toggle functionality
+
+```
+handleCheck() {
+  this.setState({
+    checked: !this.state.checked
+  })
+}
+```
+
+- attach state to the DOM elements we do this by adding onChange property which will take a JSX expression {this.handleCheck}
+```
+onChange={this.handleCheck}
+```
+
+- add var msg and add {msg}
+- create if statement that asks if(this.state.checked) ie true then the message should be displayed as checked and vice versa
+
+```
+var msg
+if (this.state.checked) {
+  msg = "checked"
+} else {
+  msg = "unchecked"
+}
+return (
+ <div>
+ <input type="checkbox"
+   onChange={this.handleCheck}
+   />
+ <p>This box is {msg}</p>
+ </div>
+)
+
+```
+
+- add defaultChecked = to a JSX express {this.state.checked}
+
+- this.setState is the function we call every time we what to change the state
+
+```javascript
+<div id='react-container'></div>
+<script type="text/babel">
+  var Checkbox = React.createClass({
+    getInitialState() {
+      return {checked: true}
+    },
+    handleCheck() {
+      this.setState({
+        checked: !this.state.checked
+      })
+    },
+    render() {
+       var msg
+       if (this.state.checked) {
+         msg = "checked"
+       } else {
+         msg = "unchecked"
+       }
+      return (
+        <div>
+        <input type="checkbox"
+          onChange={this.handleCheck}
+          defaultChecked={this.state.checked}
+          />
+        <p>This box is {msg}</p>
+        </div>
+      )
+    }
+  })
+  ReactDOM.render(<Checkbox/>,
+    document.getElementById('react-container'))
+</script>
+```
