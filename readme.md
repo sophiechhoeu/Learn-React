@@ -274,3 +274,62 @@ ReactDOM.render(<MyComponent />,
 
 </script>
 ```
+
+## React Events
+- create variable called Note
+- use
+
+  ````Javascript
+  React.createClass({
+
+  })
+  ````
+- each components needs a render function that says what we want to return
+
+  ````Javascript
+  render() {
+    return (
+
+      )
+  }
+  ````
+- best practice for render method is to wrap all of the DOM elements that we want to create in parentheses () otherwise it will error
+
+- JSX classes are <div **className**="">
+
+- then ReactDOM.render function takes in two components what we want to render(<Note></Note) and where document.getElementById('react-container')
+
+````Javascript
+  ReactDOM.render(<Note></Note>,
+  document.getElementById('react-container'))
+````
+
+- create edit and remove functions
+
+````Javascript
+edit() {
+   alert("edit note")
+},
+````
+***same for remove***
+
+- adding event by: onClick={} to each button
+    ***{} for JSX expression***
+    ````Javascript
+    onClick={this.edit}
+    onClick={this.remove}
+    ````
+- displaying note content: add text inside the render component
+- in the render inside the return and the div:
+ ````Javascript
+ render () {
+   return (
+     <div className="note">
+     <p>{this.props.children}</p>
+     <span>
+       <button onClick={this.edit}>EDIT</button>
+       <button onClick={this.remove}>X</button>
+     </span>
+     </div>
+   )
+ ````
