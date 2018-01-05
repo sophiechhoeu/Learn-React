@@ -20,6 +20,8 @@
 
   * [Update and Remove function](#update-and-remove-function)
 
+  * [Adding New](#adding-new-notes)
+
 
 
 ---
@@ -718,3 +720,62 @@ remove(){
 ```
 
 [home](#table-of-contents)
+
+## Adding new notes
+found in the parent
+the board is the parent of the note component
+
+1. reset state to empty array
+
+```
+getInitialState () {
+  return {
+    notes: []
+  }
+},
+```
+2. Add method: takes in the text(also known as the newText)
+inside this method create a variable called notes which will equal an array
+
+first position is the the state of notes sent through spread(...). Use spread to take whatever the state of notes is 1 or 1000 and make it the first item in the array.
+
+In this array we add a new object that includes the id and note. note set to text and id is nextID (the method that's created to handle the creation of a note id)
+
+```
+add(text){
+  var notes = [
+    ...this.state.notes,
+    {
+      id: this.nextId(),
+      note: text
+    }
+  ]
+  this.setState({notes})
+},
+```
+
+3. nextId method - does this id exist or not, if not increment the id ++ (generate the id for me)
+this.uniqueId equals a uniqueId or zero.
+
+```
+nextId(){
+  this.uniqueId = this.uniqueId || 0
+  return this.uniqueId++
+},
+```
+
+then add
+
+id: this.nextId(),
+
+function to adding a new note
+
+4. reset the state of notes outside of the array
+this.setState({notes})
+
+5. Render create a new button
+on the onClick it takes a JSX expression that takes in a function ie  this.add function whenever onClick is used.   
+
+```
+<button onClick={() => this.add('New Note')}>+</button>
+```
