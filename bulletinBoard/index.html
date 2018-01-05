@@ -10,6 +10,7 @@
   <body>
     <div id='react-container'></div>
     <script type="text/babel">
+
     var Note = React.createClass({
         getInitialState() {
           return{editing:false}
@@ -19,11 +20,11 @@
         },
         save() {
           var val = this.refs.newText.value
-          alert('later we will save this value:' + val)
-          this.setState({editing:false})
+          this.props.onChange(this.refs.newText.value, this.props.id)
+          this.setState({editing: false})
         },
         remove(){
-          alert("Removing Note")
+          this.props.onRemove(this.props.id)
         },
 
         renderForm() {
@@ -67,19 +68,41 @@
       getInitialState () {
         return {
           notes: [
-            'Call me',
-            'Email me',
-            'Eat Lunch',
-            'finish proposal'
+            {id: 0, note: 'Call me'},
+            {id: 1, note: 'Email me'},
+            {id: 2, note: 'Eat Lunch'},
+            {id: 3, note: 'finish proposal'},
           ]
         }
+      },
+      update(newText, id) {
+        var notes = this.state.notes.map(
+          note => (note.id !== id) ?
+          note :
+          {
+            ...note,
+            note: newText
+          }
+        )
+        this.setState({notes})
+      },
+      remove(id) {
+        var notes = this.state.notes.filter(note => note.id !== id)
+        this.setState({notes})
+      },
+      eachNote(note) {
+        return (
+          <Note key={note.id}
+          id={note.id}
+          onChange={this.update}
+          onRemove={this.remove}>
+          {note.note}</Note>
+        )
       },
       render() {
         return (
           <div className='board'>
-          {this.state.notes.map((note, i) => {
-            return <Note key={i}>{note}</Note>
-          })}
+          {this.state.notes.map(this.eachNote)}
           </div>
         )
       }

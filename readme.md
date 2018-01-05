@@ -1,5 +1,7 @@
 # React Notes
 
+[Babel](#babel)
+
 [Lydna Tutorial](https://www.lynda.com/React-js-tutorials/Welcome/519668/542808-4.html)
 
 - Javascript Library created by Facebook to help developers and designers build user interfaces quickly.
@@ -552,11 +554,11 @@ getInitialState () {
 ```
 
 then use map function to map over the notes array
-then ex6 arrow function to take two arguments (the notes and the item within the notes array)
+then es6 arrow function to take two arguments (the notes and the item within the notes array)
 
 return the note component with the key of {i} and then the content of the note {note}
 
-Here we display notes dynamically based on the number of notes held in state 
+Here we display notes dynamically based on the number of notes held in state
 
 ```
 render() {
@@ -568,4 +570,112 @@ render() {
     </div>
   )
 }
+```
+
+## Updating and removing notes
+
+1. Update notes into objects
+
+```
+getInitialState () {
+  return {
+    notes: [
+      {id: 0, note: 'Call me'},
+      {id: 1, note: 'Email me'},
+      {id: 2, note: 'Eat Lunch'},
+      {id: 3, note: 'finish proposal'},
+    ]
+  }
+
+```
+
+2. Create Update method
+- takes in newText and the Id
+- create a notes variable, which will be the setstate of notes (this.state.notes) which will map over the array of notes.
+- create a callback function to determine whether or not the note is going to be updated (with arrow syntax)
+- check if the id of the note being edited has the same id
+- if it isn't return the note otherwise return a new object
+- the new object will push the keys in that note (... otherwise known as spread), setting the newText as the note
+- then re set the state with all notes ({notes})
+
+```
+update(newText, id) {
+  var notes = this.state.notes.map(
+    note => (note.id !== id) ?
+    note :
+    {
+      ...note,
+      note: newText
+    }
+  )
+  this.setState({notes})
+},
+```
+
+3. Remove function - takes in id
+- create variable called notes - set it to state and add filter method (this.state.notes.filter)
+- **filter** will make a copy of the notes array and it will only return the items that passes
+- add callback function which will check to see if the note id is not equal to the id (note.id !== id)
+- In turn creating a new array that gets rid of the item that should be removed based on id.
+- Then set the state to new notes where the item was removed this.setState({notes})
+```
+remove(id) {
+  var notes = this.state.notes.filter(note => note.id !== id)
+  this.setState({notes})
+},
+```
+
+4. Each note method - will take in note
+- this method handles returning our note component
+- id - {note.id}, key - {note.id}
+- when we're creating a note give it an onChange
+{this.update}
+- when we're removing a note git it onRemove
+{this.remove}
+- then the note will take on note value(note value from our key & values) {note.note}
+
+```
+eachNote(note) {
+  return (
+    <Note key={note.id}
+    id={note.id}
+    onChange={this.update}
+    onRemove={this.remove}>
+    {note.note}</Note>
+  )
+},
+```
+
+5. The notes will then display whatever the note text is.
+- map over eachNote instead (this.eachNote)
+
+```
+render() {
+  return (
+    <div className='board'>
+    {this.state.notes.map(this.eachNote)}
+    </div>
+  )
+}
+})
+```
+
+6. Attach update and remove methods to the note through save and remove
+
+save - whenever on change is fired we want to pass the refs nextext value and the props id. (which is from the update method newText and id that we attached to the onChange property in eachNote)
+reset the state to editing is false
+
+remove - we attached remove to onRemove callback passing only the id.
+
+```
+save() {
+  var val = this.refs.newText.value
+  this.props.onChange(this.refs.newText.value, this.props.id)
+  this.setState({editing: false})
+},
+```
+```
+remove(){
+  this.props.onRemove(this.props.id)
+},
 ```
