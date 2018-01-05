@@ -1,5 +1,13 @@
 # React Notes
 
+  Understanding React through the creation of a bulletin Board notes message application
+
+### References:
+---
+[Lydna Tutorial](https://www.lynda.com/React-js-tutorials/Welcome/519668/542808-4.html)
+
+---
+
   ## Table of Contents
 
   * [Create React App](#create-react-app)
@@ -22,16 +30,14 @@
 
   * [Adding New](#adding-new-notes)
 
-  * [Keys](#keys)
+  * [Keys As properties](#keys-as-properties)
 
-  * [Component Lifestyle](#component-lifestyle)
+    * WillMount, DidMount and Unmount
+
+  * [Setting properties](#setting-properties)
 
 
 
----
-[Lydna Tutorial](https://www.lynda.com/React-js-tutorials/Welcome/519668/542808-4.html) for reference.
-
----
 
 - Javascript Library created by Facebook to help developers and designers build user interfaces quickly.
 
@@ -787,7 +793,7 @@ on the onClick it takes a JSX expression that takes in a function ie  this.add f
 
 [home](#table-of-contents)
 
-## Keys
+## Keys as properties
 
 randomising notes positioning
 
@@ -883,7 +889,7 @@ provides the hooks for the creation, lifetime and teardown of components
 on the click of the component we're unmounting the component
 
 1. find the element (ie myDiv)
-then on the onclick we're calling the unmountComponentat node function which references the parent div
+then on the onclick we're calling the unmountComponentAtNode function which references the parent div
 
 ```
 var getRidOfBox = document.getElementById('myDiv')
@@ -892,4 +898,36 @@ getRidOfBox.onclick = function(){
     document.getElementById('react-container'))
     alert('component is unmounted')
 }
+```
+[home](#table-of-contents)
+
+## Setting Properties
+
+Get default props will be called once the component renders
+
+returns an object with our style properties
+
+```
+getDefaultProps() {
+  return {
+    backgroundColor: 'red',
+    height: 200,
+    width: 200
+  }
+},
+```
+
+setting this default allows reuse over style again through this.props
+
+it initialises default properties for our components
+
+not a required method but great for usability.
+
+```
+return (
+  <div id='myDiv'>
+  <div style={this.props}></div>
+  <section style={this.props}></section>
+  </div>
+)
 ```
