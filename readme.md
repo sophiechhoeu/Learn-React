@@ -723,6 +723,7 @@ remove(){
 
 ## Adding new notes
 found in the parent
+
 the board is the parent of the note component
 
 1. reset state to empty array
