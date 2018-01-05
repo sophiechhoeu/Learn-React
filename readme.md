@@ -1,8 +1,20 @@
 # React Notes
 
-[Babel](#babel)
+# Table of Contents
 
-[Lydna Tutorial](https://www.lynda.com/React-js-tutorials/Welcome/519668/542808-4.html)
+  [Create React App](#create-react-app)
+  [Babel](#babel)
+  [Components](#components)
+  [Properties](#properties)
+  [Adding State](#adding state)
+  [Using Refs](#using-refs)
+  [PropTypes](#proptypes)
+  [Adding Child Elements](#adding-child-elements)
+  [Update and Remove function](#update-and-remove-function)
+
+
+
+[Lydna Tutorial](https://www.lynda.com/React-js-tutorials/Welcome/519668/542808-4.html) guide for reference
 
 - Javascript Library created by Facebook to help developers and designers build user interfaces quickly.
 
@@ -89,6 +101,8 @@ Using JSX but errors - what we need Babel for this to run
 
 ```
 
+[home](#table-of-contents)
+
 ## Babel
 
 Transpiler that will transpile Javascript Code.
@@ -123,6 +137,7 @@ then add type="text/babel" so it knows to transpile this code
 </script>
 ```
 
+[home](#table-of-contents)
 
 ## Components
 
@@ -213,6 +228,9 @@ ReactDOM.render(<MyComponent />,
     document.getElementById('react-container'))
 ```
 
+[home](#table-of-contents)
+
+
 ## Properties
 
 - this.props.text - JSX syntax wrapped in curly braces
@@ -277,6 +295,8 @@ ReactDOM.render(<MyComponent />,
 </script>
 ```
 
+[home](#table-of-contents)
+
 ## React Events
 - create variable called Note
 - use
@@ -336,9 +356,7 @@ render () {
   )
 ```
 
-
-
-
+[home](#table-of-contents)
 
 ## React State
 [Checkbox](/checkbox/index.html)
@@ -452,6 +470,7 @@ return (
     document.getElementById('react-container'))
 </script>
 ```
+[home](#table-of-contents)
 
 ## Adding state
 [note](/bulletinBoard/index.html)
@@ -513,6 +532,8 @@ render () {
 
 ```
 
+[home](#table-of-contents)
+
 ## Using refs
 grabbing the value of elements through refs
 
@@ -528,6 +549,7 @@ create variable called val
 var val = this.refs.newText.value
 
 ```
+[home](#table-of-contents)
 
 ## propTypes
 optional feature
@@ -572,7 +594,9 @@ render() {
 }
 ```
 
-## Updating and removing notes
+[home](#table-of-contents)
+
+## Update and Remove function
 
 1. Update notes into objects
 
@@ -679,3 +703,4 @@ remove(){
   this.props.onRemove(this.props.id)
 },
 ```
+[home](#table-of-contents)
