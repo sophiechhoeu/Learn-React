@@ -22,6 +22,8 @@
 
   * [Adding New](#adding-new-notes)
 
+  * [Keys](#keys)
+
 
 
 ---
@@ -774,9 +776,59 @@ function to adding a new note
 4. reset the state of notes outside of the array
 this.setState({notes})
 
-5. Render create a new button
+5. In render create a new button
 on the onClick it takes a JSX expression that takes in a function ie  this.add function whenever onClick is used.   
 
 ```
 <button onClick={() => this.add('New Note')}>+</button>
 ```
+
+## Keys
+
+randomising notes positioning
+
+*important - we need to pass a key property to our component when it is part of an array of children*
+
+When something changes in react a re-render of what has changed will occur. If the children are dynamic ie (randomising or add new components to an array like spread) the re render might error. To prevent this we assign a key property.
+
+In the note component (ie child)
+
+1. add random function
+x = x axis
+y = y axis
+s = units
+
+this will return the random method which will generate a random number between certain numbers (0-1)
+
+subtracting the x axis from the y axis will make this a number appear somewhere on our screen then add the units on the end.
+
+```
+randomBetween(x, y, s) {
+  return (x + Math.ceil(Math.random() * (y-x))) + s
+},
+```
+
+2. componentWillMount - will set up the style of the new note using this randomBetween function.
+
+componentWillMount will fire before the render of DOM elements  
+
+this.style will be an object where the right and top is equalled to the randomBetween function, passing in x, y, s
+
+```
+componentWillMount() {
+  this.style = {
+    right: this.randomBetween(0, window.innerWidth -150, 'px'),
+    top: this.randomBetween(0, window.innerHeight -150, 'px')
+  }
+},
+```
+
+change CSS positioning to absolute
+
+relative (means it will fall in line depending on
+where it is added to the DOM )
+
+3. Render form and render Display
+add this.style to the each div
+
+style={this.style}>
