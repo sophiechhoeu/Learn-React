@@ -36,8 +36,12 @@
 
   * [Setting properties](#setting-properties)
 
+  * [Updating Components](#updating-component)
 
 
+---
+
+## What is React?
 
 - Javascript Library created by Facebook to help developers and designers build user interfaces quickly.
 
@@ -930,4 +934,55 @@ return (
   <section style={this.props}></section>
   </div>
 )
+```
+
+## Updating Components
+
+Use getInitialState() with style properties
+
+Meaning when the application renders it will returns the initial state
+
+```
+getInitialState() {
+  return {
+    backgroundColor: 'red',
+    height: 200,
+    width: 200
+  }
+},
+```
+
+amend render to only one overarching div
+change style property to this.state
+
+```
+render(){
+    return (
+      <div style={this.state}
+        onClick={this.update}>
+      </div>
+    )
+}
+```
+
+The update method handles an changes that occurred to the div
+
+The update affects the state, returning an object that a backgroundColor that is grey (initially red )
+
+attach to div with onClick property
+
+```
+update() {
+  this.setState({backgroundColor: 'grey'})
+},
+```
+
+Component did update fires after a **successful** re-render
+
+change in state will occur -> component re-render -> component did update will be called. 
+
+```
+componentDidUpdate(){
+  alert("component updating");
+},
 ```
