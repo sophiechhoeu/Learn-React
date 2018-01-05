@@ -1,20 +1,30 @@
 # React Notes
 
-# Table of Contents
+  ## Table of Contents
 
-  [Create React App](#create-react-app)
-  [Babel](#babel)
-  [Components](#components)
-  [Properties](#properties)
-  [Adding State](#adding state)
-  [Using Refs](#using-refs)
-  [PropTypes](#proptypes)
-  [Adding Child Elements](#adding-child-elements)
-  [Update and Remove function](#update-and-remove-function)
+  * [Create React App](#create-react-app)
+
+  * [Babel](#babel)
+
+  * [Components](#components)
+
+  * [Properties](#properties)
+
+  * [Adding State](#adding-state)
+
+  * [Using Refs](#using-refs)
+
+  * [PropTypes](#proptypes)
+
+  * [Adding Child Elements](#adding-child-elements)
+
+  * [Update and Remove function](#update-and-remove-function)
 
 
 
-[Lydna Tutorial](https://www.lynda.com/React-js-tutorials/Welcome/519668/542808-4.html) guide for reference
+
+[Lydna Tutorial](https://www.lynda.com/React-js-tutorials/Welcome/519668/542808-4.html) for reference.
+
 
 - Javascript Library created by Facebook to help developers and designers build user interfaces quickly.
 
@@ -689,8 +699,6 @@ render() {
 save - whenever on change is fired we want to pass the refs nextext value and the props id. (which is from the update method newText and id that we attached to the onChange property in eachNote)
 reset the state to editing is false
 
-remove - we attached remove to onRemove callback passing only the id.
-
 ```
 save() {
   var val = this.refs.newText.value
@@ -698,9 +706,14 @@ save() {
   this.setState({editing: false})
 },
 ```
+
+remove - we attached remove to onRemove callback passing only the id.
+
+
 ```
 remove(){
   this.props.onRemove(this.props.id)
 },
 ```
+
 [home](#table-of-contents)
