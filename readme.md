@@ -876,4 +876,20 @@ provides the hooks for the creation, lifetime and teardown of components
 
 * componentDidUpdate - fire right after everything in the Dom has been updated
 
-* componentWillUnmount - called before the component is unmounted. If called on the parent the children will be unmounted as well.  
+* componentWillUnmount - called before the component is unmounted. If called on the parent the children will be unmounted as well.
+
+**componentWillUnmount**
+
+on the click of the component we're unmounting the component
+
+1. find the element (ie myDiv)
+then on the onclick we're calling the unmountComponentat node function which references the parent div
+
+```
+var getRidOfBox = document.getElementById('myDiv')
+getRidOfBox.onclick = function(){
+  ReactDOM.unmountComponentAtNode(
+    document.getElementById('react-container'))
+    alert('component is unmounted')
+}
+```
