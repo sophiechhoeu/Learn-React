@@ -24,6 +24,8 @@
 
   * [Keys](#keys)
 
+  * [Component Lifestyle](#component-lifestyle)
+
 
 
 ---
@@ -783,6 +785,8 @@ on the onClick it takes a JSX expression that takes in a function ie  this.add f
 <button onClick={() => this.add('New Note')}>+</button>
 ```
 
+[home](#table-of-contents)
+
 ## Keys
 
 randomising notes positioning
@@ -828,7 +832,48 @@ change CSS positioning to absolute
 relative (means it will fall in line depending on
 where it is added to the DOM )
 
-3. Render form and render Display
+3. In Render form and render Display
 add this.style to the each div
 
-style={this.style}>
+Example:
+
+```
+renderForm() {
+  return (
+    <div className="note"
+    style={this.style}>
+    <textarea ref="newText"></textarea>
+    <button onClick={this.save}>SAVE</button>
+    </div>
+  )
+},
+```
+
+[home](#table-of-contents)
+
+## Component Lifestyle
+
+provides the hooks for the creation, lifetime and teardown of components
+
+
+
+### Mounting Lifestyle
+* getInitialState - called once and will set the default for the state
+
+* componentWillMount - called before the render and it's the last chance to effect state prior to render
+
+* render - required method
+
+* componentDidMount - fired after the render so after a successful render we can access the dom, the component has been rendered and the user can interact with it
+
+**Updating**
+
+* componentWillReceiveProps - we get the opportunity to change object and effect state.
+
+* shouldComponentUpdate/ componentWillUpdate - invoked before rendering and used for optimisation (only called if something has changed)
+
+* render - required method and part of the update lifecycle
+
+* componentDidUpdate - fire right after everything in the Dom has been updated
+
+* componentWillUnmount - called before the component is unmounted. If called on the parent the children will be unmounted as well.  
