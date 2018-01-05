@@ -979,10 +979,12 @@ update() {
 
 Component did update fires after a **successful** re-render
 
-change in state will occur -> component re-render -> component did update will be called. 
+change in state will occur -> component re-render -> component did update will be called.
 
 ```
 componentDidUpdate(){
   alert("component updating");
 },
 ```
+
+## Lifecycle methods
