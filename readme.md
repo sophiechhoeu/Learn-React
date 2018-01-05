@@ -526,3 +526,46 @@ create variable called val
 var val = this.refs.newText.value
 
 ```
+
+## propTypes
+optional feature
+serves as documentation about how you wish your components to work, and what values you expect for them.
+
+## Adding child elements
+*make the board the parent of the note component*
+
+add getInitialState method to Board - return an object where the key is notes and notes is an array
+
+
+```
+getInitialState () {
+  return {
+    notes: [
+      'Call me',
+      'Email me',
+      'Eat Lunch',
+      'finish proposal'
+    ]
+  }
+},
+
+```
+
+then use map function to map over the notes array
+then ex6 arrow function to take two arguments (the notes and the item within the notes array)
+
+return the note component with the key of {i} and then the content of the note {note}
+
+Here we display notes dynamically based on the number of notes held in state 
+
+```
+render() {
+  return (
+    <div className='board'>
+    {this.state.notes.map((note, i) => {
+      return <Note key={i}>{note}</Note>
+    })}
+    </div>
+  )
+}
+```
