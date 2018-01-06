@@ -2,6 +2,8 @@
 
   Understanding React through the creation of a bulletin Board notes message application
 
+  ![bulletin board](https://github.com/sophiechhoeu/Learn-React/blob/master/images/Screen%20Shot%202018-01-07%20at%202.37.38%20am.png)
+
 ### References:
 ---
 [Lydna Tutorial](https://www.lynda.com/React-js-tutorials/Welcome/519668/542808-4.html)
