@@ -38,6 +38,8 @@
 
   * [Updating Components](#updating-component)
 
+  * [Lifecycle Methods](#lifecycle-methods)
+
 
 ---
 
@@ -988,3 +990,87 @@ componentDidUpdate(){
 ```
 
 ## Lifecycle methods
+
+- Add defaultValue and this.props.children in the text area
+
+```
+renderForm() {
+  return (
+    <div className="note"
+    style={this.style}>
+    <textarea ref="newText"
+    defaultValue={this.props.children}></textarea>
+    <button onClick={this.save}>SAVE</button>
+    </div>
+  )
+},
+```
+
+- componentDidUpdate: add to note component between componentwillmount and randomBetween to be called right after an update
+
+This method is checking to see if the state is editing if it's true it will focus on the newText and select it
+
+```
+componentDidUpdate(){
+  if (this.state.editing) {
+    this.refs.newText.focus()
+    this.refs.newText.select()
+  }
+},
+```
+
+- shouldComponentUpdate: after component did update, to allow to switch between states.
+
+takes in new props and new state and if changes happen the component will update if nothing has happened no re-render will take place.
+
+```
+shouldComponentUpdate(nextProps, nextState) {
+  return this.props.children !== nextProps.children || this.state
+  !== nextState
+
+},
+```
+
+- Board component
+
+add variable url for api
+add fetch(url)
+.then a callback function will show json api data.
+.then first position in the array
+.then split the text based on a period
+.then send an array and then foreach on the array send a sentence and use the this.add function (sentence represents text) then add catch as a fail safe on an error  
+
+```
+componentWillMount() {
+  if (this.props.count) {
+    var url = `https://baconipsum.com/api/?type=all-meat&sentences=${this.props.count}`
+    fetch(url)
+      .then(results => results.json())
+      .then(array => array[0])
+      .then(text => text.split('. '))
+      .then(array => array.forEach(
+        sentence => this.add(sentence)))
+        .catch(function(err) {
+          console.log("didnt connect", err)
+        })
+  }
+},
+```
+
+- render for note under render display
+add react draggable component wrapped around what we want to edit, this.state.editing
+wrapped in a jsx expression
+
+- ternary operator ? :
+(condition) ? value1:value2
+
+```
+render () {
+
+  return ( <ReactDraggable>
+    {(this.state.editing) ? this.renderForm() : this.renderDisplay()}
+    </ReactDraggable>
+    )
+  }
+})
+```
