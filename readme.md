@@ -1074,3 +1074,54 @@ render () {
   }
 })
 ```
+
+## Create react app
+*through terminal*
+* launching bulletin board via create react app
+
+- *make sure node is installed*
+- *make a directory - cd into directory*
+- *create-react-app (name of app)*
+- *terminal will ask to cd into app folder then run yarn start*
+
+install
+
+```
+$ npm install create-react-class
+
+```
+amend React.createClass to createReactClass as part of 16 update
+
+Add board component to app.js
+remove component from import React
+remove logo
+update export default board
+rename app.js to board.js
+add import Note from './Note'
+create note.js file
+add note component
+add import react from react and css to note component
+add export default note
+
+install
+```
+$npm install --save react-draggable
+```
+
+add  import draggable from react-draggable to note
+update draggable component tag from react draggable to draggable only in the return render
+
+open index.js
+update app to import Board from Board  
+under render with Board commponent and note count, then update root to react-container
+
+index.html update div from root to react-container
+
+remove index css (may conflict)
+
+then in terminal
+
+```
+npm start
+```
+npm run build in terminal will create a production build folder that minifies our js etc 
