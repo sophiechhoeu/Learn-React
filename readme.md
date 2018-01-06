@@ -10,7 +10,7 @@
 
   ## Table of Contents
 
-  * [Create React App](#create-react-app)
+  * [Create React App through one file ](#create-react-app-through-one-file)
 
   * [Babel](#babel)
 
@@ -40,7 +40,7 @@
 
   * [Lifecycle Methods](#lifecycle-methods)
 
-
+* [Create react app through terminal](#create-react-app-through-terminal)
 ---
 
 ## What is React?
@@ -77,7 +77,7 @@ with React
 
 - Javascript Logic
 
-## Create React App
+## Create React App through one file
 *message board react application*
 
 - create index.html
@@ -937,6 +937,7 @@ return (
   </div>
 )
 ```
+[home](#table-of-contents)
 
 ## Updating Components
 
@@ -988,6 +989,8 @@ componentDidUpdate(){
   alert("component updating");
 },
 ```
+
+[home](#table-of-contents)
 
 ## Lifecycle methods
 
@@ -1074,8 +1077,9 @@ render () {
   }
 })
 ```
+[home](#table-of-contents)
 
-## Create react app
+## Create react app through terminal
 *through terminal*
 * launching bulletin board via create react app
 
@@ -1124,4 +1128,6 @@ then in terminal
 ```
 npm start
 ```
-npm run build in terminal will create a production build folder that minifies our js etc 
+npm run build in terminal will create a production build folder that minifies our js etc
+
+[home](#table-of-contents)
